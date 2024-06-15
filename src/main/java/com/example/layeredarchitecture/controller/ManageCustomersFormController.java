@@ -232,7 +232,6 @@ public class ManageCustomersFormController {
             e.printStackTrace();
         }
 
-
         if (tblCustomers.getItems().isEmpty()) {
             return "C00-001";
         } else {

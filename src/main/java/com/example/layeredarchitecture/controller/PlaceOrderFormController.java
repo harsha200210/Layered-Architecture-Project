@@ -55,7 +55,7 @@ public class PlaceOrderFormController {
     OrderDAO orderDAO = new OrderDAOImpl();
     ItemDAO itemDAO = new ItemDAOImpl();
     CustomerDAO customerDAO = new CustomerDAOImpl();
-    OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
 
@@ -317,63 +317,24 @@ public class PlaceOrderFormController {
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
         /*Transaction*/
-
-        try {
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            /*if order id already exist*/
-            if (orderDAO.checkIfOrderExists(orderId)) {
-
-            }
-
-            connection.setAutoCommit(false);
-
-            if (orderDAO.placeOrder(new OrderDTO(orderId,orderDate,customerId))) {
-                connection.rollback();
-                connection.setAutoCommit(true);
-                return false;
-            }
-
-            for (OrderDetailDTO detail : orderDetails) {
-
-                if (orderDetailsDAO.saveOrderDetail(orderId,new OrderDetailDTO(detail.getItemCode(),detail.getQty(),detail.getUnitPrice()))) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
-                    return false;
-                }
-
-//                //Search & Update Item
-                ItemDTO item = findItem(detail.getItemCode());
-                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
-
-
-                if (!(itemDAO.updateQty(new ItemDTO(item.getCode(),item.getDescription(),item.getUnitPrice(),item.getQtyOnHand())))) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
-                    return false;
-                }
-            }
-
-            connection.commit();
-            connection.setAutoCommit(true);
+        OrderDTO orderDTO = new OrderDTO(orderId, orderDate, customerId);
+        if (orderDAO.saveOrder(orderDTO,orderDetails)){
             return true;
-
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
         }
         return false;
     }
 
 
-    public ItemDTO findItem(String code) {
-        try {
-            return itemDAO.findItem(code);
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to find the Item " + code, e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public ItemDTO findItem(String code) {
+//        try {
+//            return itemDAO.findItem(code);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Failed to find the Item " + code, e);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 
 }
