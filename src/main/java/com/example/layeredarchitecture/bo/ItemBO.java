@@ -18,11 +18,4 @@ public interface ItemBO {
 
     String getCurrentIdItem() throws SQLException, ClassNotFoundException;
 
-    ItemDTO getObjectItem(String code) throws SQLException, ClassNotFoundException;
-
-    ArrayList<String> getAllItemIds() throws SQLException, ClassNotFoundException;
-
-    boolean updateQty(ItemDTO item) throws SQLException, ClassNotFoundException;
-
-    ItemDTO findItem(String code) throws SQLException, ClassNotFoundException;
 }

@@ -41,23 +41,4 @@ public class ItemBOImpl implements ItemBO {
         return itemDAO.getCurrentId();
     }
 
-    @Override
-    public ItemDTO getObjectItem(String code) throws SQLException, ClassNotFoundException {
-        return itemDAO.getObject(code);
-    }
-
-    @Override
-    public ArrayList<String> getAllItemIds() throws SQLException, ClassNotFoundException {
-        return itemDAO.getAllIds();
-    }
-
-    @Override
-    public boolean updateQty(ItemDTO item) throws SQLException, ClassNotFoundException {
-        return itemDAO.updateQty(item);
-    }
-
-    @Override
-    public ItemDTO findItem(String code) throws SQLException, ClassNotFoundException {
-        return itemDAO.findItem(code);
-    }
 }

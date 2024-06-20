@@ -18,7 +18,4 @@ public interface CustomerBO {
 
     String getCurrentIdCustomer() throws SQLException, ClassNotFoundException;
 
-    CustomerDTO getObjectCustomer(String newValue) throws SQLException, ClassNotFoundException;
-
-    ArrayList<String> getAllCustomerIds() throws SQLException, ClassNotFoundException;
 }
