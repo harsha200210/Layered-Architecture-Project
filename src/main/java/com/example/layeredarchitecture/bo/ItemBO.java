@@ -1,11 +1,11 @@
-package com.example.layeredarchitecture.dao;
+package com.example.layeredarchitecture.bo;
 
 import com.example.layeredarchitecture.model.ItemDTO;
 
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface ItemDAO {
+public interface ItemBO {
     ArrayList<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException;
 
     boolean deleteItem(String code) throws SQLException, ClassNotFoundException;
@@ -16,11 +16,11 @@ public interface ItemDAO {
 
     boolean existItem(String code) throws SQLException, ClassNotFoundException;
 
-    String getCurrentId() throws SQLException, ClassNotFoundException;
+    String getCurrentIdItem() throws SQLException, ClassNotFoundException;
 
-    ItemDTO getItemByCode(String code) throws SQLException, ClassNotFoundException;
+    ItemDTO getObjectItem(String code) throws SQLException, ClassNotFoundException;
 
-    ArrayList<String> getAllItemCodes() throws SQLException, ClassNotFoundException;
+    ArrayList<String> getAllItemIds() throws SQLException, ClassNotFoundException;
 
     boolean updateQty(ItemDTO item) throws SQLException, ClassNotFoundException;
 
