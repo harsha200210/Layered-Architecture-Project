@@ -11,7 +11,7 @@ public class DAOFactory {
         CUSTOMER, ITEM, ORDER, ORDERDETAILS
     }
 
-    public static Object getDAO(DAOType daoType) {
+    public static SuperDAO getDAO(DAOType daoType) {
         switch (daoType) {
             case CUSTOMER:
                 return new CustomerDAOImpl();

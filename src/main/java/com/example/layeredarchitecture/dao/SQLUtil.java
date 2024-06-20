@@ -17,7 +17,7 @@ public class SQLUtil {
             }
         }
 
-        if (sql.toLowerCase().contains("select") ) {
+        if (sql.startsWith("select") ) {
             ResultSet resultSet = preparedStatement.executeQuery();
             return (T) resultSet;
         } else {

@@ -3,8 +3,6 @@ package com.example.layeredarchitecture.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
-
 public class OrderDetail implements Serializable {
     private String itemCode;
     private int qty;
