@@ -1,6 +1,6 @@
 package com.example.layeredarchitecture.dao.custom;
 
-import com.example.layeredarchitecture.model.OrderDTO;
+import com.example.layeredarchitecture.entity.Order;
 
 import java.sql.*;
 
@@ -9,6 +9,6 @@ public interface OrderDAO {
 
     boolean checkIfOrderExists(String orderId) throws SQLException, ClassNotFoundException;
 
-    boolean placeOrder(OrderDTO orderDTO) throws SQLException, ClassNotFoundException;
+    boolean placeOrder(Order order) throws SQLException, ClassNotFoundException;
 
 }
