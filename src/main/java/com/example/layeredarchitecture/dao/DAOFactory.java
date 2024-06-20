@@ -11,16 +11,16 @@ public class DAOFactory {
         CUSTOMER, ITEM, ORDER, ORDERDETAILS
     }
 
-    public static <T>T getDAO(DAOType daoType) {
+    public static Object getDAO(DAOType daoType) {
         switch (daoType) {
             case CUSTOMER:
-                return (T) new CustomerDAOImpl();
+                return new CustomerDAOImpl();
             case ITEM:
-                return (T) new ItemDAOImpl();
+                return new ItemDAOImpl();
             case ORDER:
-                return (T) new OrderDAOImpl();
+                return new OrderDAOImpl();
             case ORDERDETAILS:
-                return (T) new OrderDetailsDAOImpl();
+                return new OrderDetailsDAOImpl();
             default:
                 return null;
         }

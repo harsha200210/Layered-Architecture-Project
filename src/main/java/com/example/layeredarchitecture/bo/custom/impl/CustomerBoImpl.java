@@ -12,7 +12,7 @@ public class CustomerBoImpl implements CustomerBO {
     CustomerDAO customerDAO;
 
     public CustomerBoImpl() {
-        this.customerDAO = DAOFactory.getDAO(DAOFactory.DAOType.CUSTOMER);
+        this.customerDAO = (CustomerDAO) DAOFactory.getDAO(DAOFactory.DAOType.CUSTOMER);
 
     }
 

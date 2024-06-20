@@ -29,10 +29,10 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
     OrderDetailsDAO orderDetailsDAO;
 
     public PurchaseOrderBOImpl() {
-        this.orderDAO = DAOFactory.getDAO(DAOFactory.DAOType.ORDER);
-        this.itemDAO = DAOFactory.getDAO(DAOFactory.DAOType.ITEM);;
-        this.customerDAO = DAOFactory.getDAO(DAOFactory.DAOType.CUSTOMER);;
-        this.orderDetailsDAO = DAOFactory.getDAO(DAOFactory.DAOType.ORDERDETAILS);;
+        this.orderDAO = (OrderDAO) DAOFactory.getDAO(DAOFactory.DAOType.ORDER);
+        this.itemDAO = (ItemDAO) DAOFactory.getDAO(DAOFactory.DAOType.ITEM);;
+        this.customerDAO = (CustomerDAO) DAOFactory.getDAO(DAOFactory.DAOType.CUSTOMER);;
+        this.orderDetailsDAO = (OrderDetailsDAO) DAOFactory.getDAO(DAOFactory.DAOType.ORDERDETAILS);;
     }
 
     @Override
