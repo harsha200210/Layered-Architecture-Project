@@ -1,6 +1,7 @@
-package com.example.layeredarchitecture.bo.impl;
+package com.example.layeredarchitecture.bo.custom.impl;
 
-import com.example.layeredarchitecture.bo.PurchaseOrderBO;
+import com.example.layeredarchitecture.bo.custom.PurchaseOrderBO;
+import com.example.layeredarchitecture.dao.DAOFactory;
 import com.example.layeredarchitecture.dao.custom.CustomerDAO;
 import com.example.layeredarchitecture.dao.custom.ItemDAO;
 import com.example.layeredarchitecture.dao.custom.OrderDAO;
@@ -22,10 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseOrderBOImpl implements PurchaseOrderBO {
-    OrderDAO orderDAO = new OrderDAOImpl();
-    ItemDAO itemDAO = new ItemDAOImpl();
-    CustomerDAO customerDAO = new CustomerDAOImpl();
-    OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
+    OrderDAO orderDAO;
+    ItemDAO itemDAO;
+    CustomerDAO customerDAO;
+    OrderDetailsDAO orderDetailsDAO;
+
+    public PurchaseOrderBOImpl() {
+        this.orderDAO = DAOFactory.getDAO(DAOFactory.DAOType.ORDER);
+        this.itemDAO = DAOFactory.getDAO(DAOFactory.DAOType.ITEM);;
+        this.customerDAO = DAOFactory.getDAO(DAOFactory.DAOType.CUSTOMER);;
+        this.orderDetailsDAO = DAOFactory.getDAO(DAOFactory.DAOType.ORDERDETAILS);;
+    }
 
     @Override
     public String getCurrentOrderId() throws SQLException, ClassNotFoundException {
@@ -70,11 +78,6 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
     @Override
     public CustomerDTO getObjectCustomer(String newValue) throws SQLException, ClassNotFoundException {
         return customerDAO.getObject(newValue);
-    }
-
-    @Override
-    public boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.delete(id);
     }
 
     @Override
